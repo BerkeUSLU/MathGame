@@ -108,12 +108,25 @@ public class Game extends AppCompatActivity {
     }
 
     public void gameContinue() {
-        numberOne = random.nextInt(50);
-        numberTwo = random.nextInt(50);
-
-        correctAnswer = (numberOne + numberTwo);
-        question.setText(numberOne + " + " + numberTwo);
-
+        numberOne = random.nextInt(11);
+        numberTwo = random.nextInt(11);
+        randomExercise = random.nextInt(4);
+        if (randomExercise == 0) {
+            correctAnswer = (numberOne + numberTwo);
+            question.setText(numberOne + " + " + numberTwo);
+        }
+        else if (randomExercise == 1) {
+            correctAnswer = (numberOne - numberTwo);
+            question.setText(numberOne + " - " + numberTwo);
+        }
+        else if (randomExercise == 2) {
+            correctAnswer = (numberOne * numberTwo);
+            question.setText(numberOne + " x " + numberTwo);
+        }
+        else if (randomExercise == 3) {
+            correctAnswer = (numberOne / numberTwo);
+            question.setText(numberOne + " / " + numberTwo);
+        }
         startTimer();
     }
 

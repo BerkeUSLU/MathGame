@@ -9,20 +9,17 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addition;
-    Button subtraction;
-    Button multiplication;
+    Button playMain;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addition = findViewById(R.id.buttonAddition);
-        subtraction = findViewById(R.id.buttonSubtraction);
-        multiplication = findViewById(R.id.buttonMultiplication);
+        playMain = findViewById(R.id.buttonPlayMain);
 
-        addition.setOnClickListener(new View.OnClickListener() {
+        playMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Game.class);
