@@ -63,7 +63,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = Integer.valueOf(answer.getText().toString());
                 pauseTimer();
-                if (userLife == 0 || (userScore < 0)) {
+                if (userLife == 0) {
                     Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Game.this,Result.class);
                     intent.putExtra("score",userScore);
@@ -71,16 +71,14 @@ public class Game extends AppCompatActivity {
                     finish();
                 }
                 if (userAnswer == correctAnswer) {
-                    userScore++;
+                    for (int i=0;i<1;i++){
+                        userScore += 1;
+                    }
                     score.setText("" + userScore);
                     question.setText("Your answer is correct!");
                 } else {
-                    if (!(userScore == 0) || (userScore < 0)) {
-                        userScore--;
-                    }
-                    if (!(userLife == 0) || (userScore < 0)) {
-                        userLife--;
-                    }
+                    userScore--;
+                    userLife--;
                     score.setText("" + userScore);
                     life.setText("" + userLife);
                     question.setText("Sorry, correct answer is: " + correctAnswer);
@@ -93,7 +91,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 answer.setText("");
                 resetTimer();
-                if (userLife == 0 || (userScore < 0)) {
+                if (userLife == 0) {
                     Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Game.this,Result.class);
                     intent.putExtra("score",userScore);
