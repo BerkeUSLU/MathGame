@@ -11,26 +11,25 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAddition"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="18dp"
-        android:backgroundTint="?android:attr/colorActivatedHighlight"
-        android:text="Button" />
+        android:text="@string/addition" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSubtraction"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="18dp"
-        android:backgroundTint="?android:attr/colorActivatedHighlight"
-        android:text="Button" />
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="@string/subtraction" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonMultiplication"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="18dp"
-        android:backgroundTint="?android:attr/colorActivatedHighlight"
-        android:text="Button" />
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="@string/multiplication" />
 </LinearLayout>
