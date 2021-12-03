@@ -1,7 +1,6 @@
 package com.company.mathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
-// ResetTimer çalışmıyor!
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -35,7 +34,7 @@ public class Game extends AppCompatActivity {
     int userLife = 3;
 
     CountDownTimer timer;
-    private static final long START_TIMER_IN_MILIS = 10000;
+    private static final long START_TIMER_IN_MILIS = 30000;
     boolean isTimerRunning;
     long remainingTimeInMilis = START_TIMER_IN_MILIS;
 
