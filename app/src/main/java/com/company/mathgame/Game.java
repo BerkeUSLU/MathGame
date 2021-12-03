@@ -1,6 +1,8 @@
 package com.company.mathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -27,6 +29,7 @@ public class Game extends AppCompatActivity {
     Random random = new Random();
     int numberOne;
     int numberTwo;
+    int randomExercise;
     //
     int userAnswer;
     int correctAnswer;
@@ -60,15 +63,22 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = Integer.valueOf(answer.getText().toString());
                 pauseTimer();
+                if (userLife == 0 || (userScore < 0)) {
+                    Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Game.this,Result.class);
+                    intent.putExtra("score",userScore);
+                    startActivity(intent);
+                    finish();
+                }
                 if (userAnswer == correctAnswer) {
                     userScore++;
                     score.setText("" + userScore);
                     question.setText("Your answer is correct!");
                 } else {
-                    if (!(userScore == 0)) {
+                    if (!(userScore == 0) || (userScore < 0)) {
                         userScore--;
                     }
-                    if (!(userLife == 0)) {
+                    if (!(userLife == 0) || (userScore < 0)) {
                         userLife--;
                     }
                     score.setText("" + userScore);
@@ -83,8 +93,16 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 answer.setText("");
                 resetTimer();
-                gameContinue();
-
+                if (userLife == 0 || (userScore < 0)) {
+                    Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Game.this,Result.class);
+                    intent.putExtra("score",userScore);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    gameContinue();
+                }
             }
         });
     }

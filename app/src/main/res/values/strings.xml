@@ -12,4 +12,7 @@
     <string name="hint">Enter your answer here!</string>
     <string name="ok">OK</string>
     <string name="next">NEXT</string>
+    <string name="finished">Game is finished!</string>
+    <string name="play">PLAY AGAIN!</string>
+    <string name="exit">EXIT</string>
 </resources>
