@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MathGame</string>
+    <string name="app_name">Math Game V1.0</string>
     <string name="playMain">PLAY</string>
     <string name="score">Score:</string>
     <string name="zero">0</string>
