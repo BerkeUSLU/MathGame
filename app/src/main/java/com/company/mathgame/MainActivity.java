@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button playMain;
+    Button exitMain;
 
 
     @Override
@@ -18,12 +19,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         playMain = findViewById(R.id.buttonPlayMain);
+        exitMain = findViewById(R.id.buttonExitMain);
 
         playMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Game.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+        exitMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });
