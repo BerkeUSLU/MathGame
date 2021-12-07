@@ -31,8 +31,8 @@ public class Game extends AppCompatActivity {
     int numberTwo;
     int randomExercise;
     //
-    int userAnswer;
-    int correctAnswer;
+    double userAnswer;
+    double correctAnswer;
     int userScore = 0;
     int userLife = 3;
 
@@ -40,6 +40,8 @@ public class Game extends AppCompatActivity {
     private static final long START_TIMER_IN_MILIS = 30000;
     boolean isTimerRunning;
     long remainingTimeInMilis = START_TIMER_IN_MILIS;
+
+    private final int TRESHHOLD  = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +66,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    userAnswer = Integer.parseInt(answer.getText().toString());
+                    userAnswer = Double.parseDouble(answer.getText().toString());
                 }catch (NumberFormatException ex) {
                     next.setEnabled(false);
                     Toast.makeText(getApplicationContext(),"Invalid Argument!",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 next.setEnabled(true);
-
+                ok.setEnabled(false);
                 pauseTimer();
                 if (userLife == 0) {
                     Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
@@ -80,7 +82,7 @@ public class Game extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-                if (userAnswer == correctAnswer) {
+                if ((int)(userAnswer * TRESHHOLD) == (int)(correctAnswer * TRESHHOLD)) {
                     userScore++;
                     score.setText("" + userScore);
                     question.setText("Your answer is correct!");
@@ -89,7 +91,7 @@ public class Game extends AppCompatActivity {
                     userLife--;
                     score.setText("" + userScore);
                     life.setText("" + userLife);
-                    question.setText("Sorry, correct answer is: " + correctAnswer);
+                    question.setText("Sorry, correct answer is: " + ((int)(correctAnswer * TRESHHOLD)) / (double)TRESHHOLD);
                 }
             }
         });
@@ -98,6 +100,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 next.setEnabled(false);
+                ok.setEnabled(true);
                 answer.setText("");
                 resetTimer();
                 if (userLife == 0) {
@@ -131,7 +134,10 @@ public class Game extends AppCompatActivity {
             question.setText(numberOne + " x " + numberTwo);
         }
         else if (randomExercise == 3) {
-            correctAnswer = (numberOne / numberTwo);
+            while(numberTwo == 0) {
+                numberTwo = random.nextInt(11);
+            }
+            correctAnswer = ((double)numberOne / numberTwo);
             question.setText(numberOne + " / " + numberTwo);
         }
         startTimer();
@@ -154,6 +160,8 @@ public class Game extends AppCompatActivity {
                 question.setText("Sorry, Time's up!");
                 userLife--;
                 life.setText("" + userLife);
+                ok.setEnabled(false);
+                next.setEnabled(true);
             }
         }.start();
         isTimerRunning = true;
