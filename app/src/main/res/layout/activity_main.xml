@@ -15,7 +15,8 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="18dp"
-        android:text="@string/playMain" />
+        android:text="@string/playMain"
+        />
 
     <Button
         android:id="@+id/buttonExitMain"
@@ -23,6 +24,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="18dp"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/exit" />
+        android:text="@string/exit"
+        />
 
 </LinearLayout>

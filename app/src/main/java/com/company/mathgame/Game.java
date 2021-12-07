@@ -57,11 +57,21 @@ public class Game extends AppCompatActivity {
         next = findViewById(R.id.buttonNext);
 
         gameContinue();
+        next.setEnabled(false);
+
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userAnswer = Integer.valueOf(answer.getText().toString());
+                try {
+                    userAnswer = Integer.parseInt(answer.getText().toString());
+                }catch (NumberFormatException ex) {
+                    next.setEnabled(false);
+                    Toast.makeText(getApplicationContext(),"Invalid Argument!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                next.setEnabled(true);
+
                 pauseTimer();
                 if (userLife == 0) {
                     Toast.makeText(getApplicationContext(),"GAME OVER!",Toast.LENGTH_SHORT).show();
@@ -71,9 +81,7 @@ public class Game extends AppCompatActivity {
                     finish();
                 }
                 if (userAnswer == correctAnswer) {
-                    for (int i=0;i<1;i++){
-                        userScore += 1;
-                    }
+                    userScore++;
                     score.setText("" + userScore);
                     question.setText("Your answer is correct!");
                 } else {
@@ -89,6 +97,7 @@ public class Game extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                next.setEnabled(false);
                 answer.setText("");
                 resetTimer();
                 if (userLife == 0) {
